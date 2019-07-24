@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <mat-form-field class="col-6 align-self-end">
+        <mat-label>Language: </mat-label>
+        <mat-select>
+            <mat-option *ngFor="let language of languages" [value]="language.value">
+            {{language.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="d-flex justify-content-center my-4">
+        <mat-form-field appearance="outline">
+            <mat-label>Outline form field</mat-label>
+            <input matInput type="text" (keyup.enter)="getMovie()" [(ngModel)]="title" placeholder="Placeholder">
+        </mat-form-field>
+    </div>
+</div>
+
+<div class="m-4" *ngIf="movie">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>{{movie.results[0].original_title}}</mat-card-title>
+            <mat-card-subtitle>Puntuacion: {{movie.results[0].vote_average}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://image.tmdb.org/t/p/w500{{movie.results[0].poster_path}}" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <p class="text-justify">{{movie.results[0].overview}}</p>
+        </mat-card-content>
+    </mat-card>
+</div>
